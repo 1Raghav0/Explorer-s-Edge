@@ -1,7 +1,5 @@
-
-
 import { useEffect, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { auth } from "../firebase/Firebase"; 
 import { onAuthStateChanged } from "firebase/auth";
 
@@ -20,9 +18,17 @@ const HeroSection = () => {
 
   const handleStartJourney = () => {
     if (user) {
-      navigate("/tripassistant"); // Redirect to trip assistant if logged in
+      navigate("/dashboard"); // Redirect to trip assistant if logged in
     } else {
       navigate("/login"); // Redirect to login if not logged in
+    }
+  };
+
+  const handleExplorePlanning = () => {
+    if (user) {
+      navigate("/dashboard"); // Redirect to trip assistant if logged in
+    } else {
+      navigate("/tripassistant"); // Redirect to login if not logged in
     }
   };
 
@@ -41,16 +47,16 @@ const HeroSection = () => {
           <div className="mt-8 flex justify-center space-x-4">
             <button
               onClick={handleStartJourney}
-              className="bg-indigo-600 text-white py-3 px-6 rounded-md text-lg font-medium hover:bg-indigo-700"
+              className="bg-indigo-600 text-white py-3 px-6 rounded-md text-lg font-medium cursor-pointer hover:bg-indigo-700"
             >
               Start Your Journey
             </button>
-            <Link
-              to="/tripassistant"
+            <button
+              onClick={handleExplorePlanning}
               className="bg-white text-indigo-600 py-3 px-6 rounded-md text-lg font-medium hover:bg-indigo-50 border border-indigo-600"
             >
-              Explore AI-Powered Planning
-            </Link>
+            Explore AI-Powered Planning
+            </button>
           </div>
         </div>
       </section>

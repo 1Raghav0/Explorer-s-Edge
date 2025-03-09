@@ -123,16 +123,16 @@ const TripAssistant = () => {
   }, [conversation]);
 
   return (
-    <div className="min-h-screen flex justify-center items-center bg-zinc-900 p-6">
-      <div className="w-full max-w-3xl mt-20 bg-zinc-800 rounded-lg shadow-lg overflow-hidden">
+    <div className="min-h-screen flex justify-center items-center bg-gray-300 p-6">
+      <div className="w-full max-w-3xl mt-10 bg-gray-100 rounded-lg shadow-2xl overflow-hidden">
         {/* Chat Header */}
-        <div className="p-4 border-b border-gray-700 text-white text-lg font-semibold flex justify-between">
+        <div className="p-4 border-b border-gray-700 text-lg font-semibold flex justify-between">
           <span>Explorer’s Edge</span>
           {/* Show Clear Button Only if User is Logged In */}
           {user && (
             <button
               onClick={clearConversations}
-              className="bg-red-500 px-3 py-1 rounded-md text-sm cur-p hover:bg-red-600"
+              className="bg-red-500 px-3 py-1 rounded-md text-sm text-white cursor-pointer hover:bg-red-600"
             >
               Clear
             </button>
@@ -155,10 +155,10 @@ const TripAssistant = () => {
         </div>
 
         {/* Input Field */}
-        <div className="p-4 bg-[#1E1E1E] border-t border-gray-600 flex items-center gap-2">
+        <div className="p-4 bg-gray-00 border-t border-gray-600 flex items-center gap-2">
           <input
             type="text"
-            className="flex-1 bg-gray-700 text-white p-2 rounded-lg focus:outline-none placeholder-gray-400"
+            className="flex-1 bg-gray-300 text-gray-800 p-2 rounded-lg focus:outline-none placeholder-gray-400"
             placeholder="City-where you visit, Budget-, Duration- ..."
             value={question}
             onChange={(e) => setQuestion(e.target.value)}
