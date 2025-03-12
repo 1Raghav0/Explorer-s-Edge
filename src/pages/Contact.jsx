@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import emailjs from "emailjs-com";
 import { db, auth } from "../firebase/Firebase";
 import { collection, addDoc } from "firebase/firestore";
 import { onAuthStateChanged } from "firebase/auth";
@@ -10,7 +11,6 @@ const Contact = () => {
     email: "",
     message: "",
   });
-
   const [isSent, setIsSent] = useState(false);
   const [loading, setLoading] = useState(false);
 
@@ -35,19 +35,28 @@ const Contact = () => {
     e.preventDefault();
     setLoading(true);
 
-    const updatedMessage = `${formData.message}\n\nAs a user of your website\n\nRegards,\nYour Explorer’s Edge Website`;
+    const updatedMessage = `${formData.message}\n\nRegards,\nYour Explorer’s Edge Website`;
+
+    // Define EmailJS parameters
+    const emailParams = {
+      name: formData.name,
+      email: formData.email,
+      message: updatedMessage,
+    };
+
+    const serviceID = "service_j5dumvc";
+    const templateID = "template_nagylzc";
+    const publicKey = "-Pgag42Zl9QCXVTqS";
 
     try {
-      const response = await fetch("https://formspree.io/f/xwpvgnkl", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ ...formData, message: updatedMessage }),
-      });
+      // Send the email via Email.js
+      const response = await emailjs.send(serviceID, templateID, emailParams, publicKey);
 
-      if (response.ok) {
-        console.log("Message sent successfully!");
+      if (response.status === 200) {
+        console.log("Email sent successfully!");
 
         if (user) {
+          // Save message to Firestore if the user is logged in
           await addDoc(collection(db, "messages"), {
             userId: user.uid,
             name: formData.name,
@@ -63,7 +72,7 @@ const Contact = () => {
         console.error("Failed to send message.");
       }
     } catch (error) {
-      console.error("Error sending message:", error);
+      console.error("Error sending email:", error);
     }
 
     setLoading(false);
@@ -158,3 +167,6 @@ const Contact = () => {
 };
 
 export default Contact;
+
+
+
