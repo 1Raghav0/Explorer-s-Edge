@@ -44,18 +44,19 @@ const HeroSection = () => {
             Experience stress-free travel planning with our intelligent AI assistant.
             Get personalized itineraries, discover hidden gems, and make unforgettable memories—effortlessly.
           </p>
-          <div className="mt-8 flex justify-center space-x-4">
+          <div className="mt-8 flex justify-center gap-4">
             <button
               onClick={handleStartJourney}
-              className="bg-indigo-600 text-white py-3 px-6 rounded-md text-lg font-medium cursor-pointer hover:bg-indigo-700"
-            >
-              Start Your Journey
+              className="w-full md:w-auto bg-indigo-600 text-white py-3 px-6 rounded-md text-lg font-medium cursor-pointer hover:bg-indigo-700"
+            ><span className="md:hidden">Start</span>
+            <span className="hidden md:inline">Start Your Journey</span>
             </button>
             <button
               onClick={handleExplorePlanning}
-              className="bg-white text-indigo-600 py-3 px-6 rounded-md text-lg font-medium hover:bg-indigo-50 border border-indigo-600"
+              className="w-full md:w-auto bg-white text-indigo-600 py-3 px-6 rounded-md text-lg font-medium hover:bg-indigo-50 border border-indigo-600"
             >
-            Explore AI-Powered Planning
+                <span className="md:hidden">Explore</span> 
+                <span className="hidden md:inline">Explore AI-Powered Planning</span>
             </button>
           </div>
         </div>
