@@ -80,6 +80,7 @@ const TripAssistant = () => {
         `${import.meta.env.VITE_GEMINI_API_URL}?key=${import.meta.env.VITE_GEMINI_API_KEY}`,
         {
           contents: [{ parts: [{ text: `Analyze this trip, destination, places to travel:\n${question}` }] }],
+          
         },
         { headers: { "Content-Type": "application/json" } }
       );
